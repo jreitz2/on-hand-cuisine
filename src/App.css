@@ -44,6 +44,10 @@ input[type="checkbox"] {
 
 button {
   margin-left: 10px;
+  color: white;
+  background-color: black;
+  border: none;
+  padding: 0 15px;
 }
 
 .recipe-card-list {
@@ -143,7 +147,10 @@ button {
 }
 
 .modal-header button {
-  height: 50px;
+  color: white;
+  background-color: black;
+  border: none;
+  padding: 0 15px;
 }
 
 .modal-ingredients {
@@ -166,5 +173,14 @@ button {
 @media screen and (max-width: 500px) {
   .header {
     padding: 0 5vh;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .modal-header {
+    font-size: 1.2rem;
+  }
+  .modal-ingredients {
+    display: block;
   }
 }

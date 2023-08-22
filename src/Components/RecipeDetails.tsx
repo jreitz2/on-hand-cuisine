@@ -52,7 +52,7 @@ const RecipeDetails = ({ recipe, isModalOpen, toggleModal }: RecipeDetailsProps)
             <div className="modal">
                 <div className='modal-header'>
                     <h2>{recipe.title}</h2>
-                    <button onClick={toggleModal}>X</button>
+                    <button onClick={toggleModal}>Close</button>
                 </div>
                 <div className='modal-body'>
                     <div className='modal-ingredients'>
