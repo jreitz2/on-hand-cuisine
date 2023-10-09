@@ -29,11 +29,26 @@ const RecipeDetails = ({
             `https://api.spoonacular.com/recipes/${recipe.id}/ingredientWidget.json?apiKey=e362ee8a688847febf87cdb4e1a22a92`
           );
           const data2 = await response2.json();
-          const ingredientsArray = data2.ingredients.map((item: any) => ({
-            name: item.name,
-            amount: item.amount.us.value,
-            unit: item.amount.us.unit,
-          }));
+
+          const uniqueIngredients = new Set();
+
+          const ingredientsArray = data2.ingredients
+            .map((item: any) => {
+              const ingredient = {
+                name: item.name,
+                amount: item.amount.us.value,
+                unit: item.amount.us.unit,
+              };
+
+              const ingredientKey = `${ingredient.name}-${ingredient.amount}-${ingredient.unit}`;
+              if (!uniqueIngredients.has(ingredientKey)) {
+                uniqueIngredients.add(ingredientKey);
+                return ingredient;
+              }
+              return null;
+            })
+            .filter(Boolean);
+
           console.log(data2);
           setDetails({
             ...details,
