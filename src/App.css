@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Freehand&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Freehand&display=swap");
 
 * {
   margin: 0;
@@ -9,7 +9,7 @@
 
 body {
   background-color: rgb(212, 243, 227);
-  font-family: 'Freehand', cursive;
+  font-family: "Freehand", cursive;
 }
 
 .header {
@@ -28,7 +28,8 @@ body {
   color: rgb(160, 27, 27);
 }
 
-input, button {
+input,
+button {
   font-size: 1.5rem;
   font-family: inherit;
   padding: 0 5px;
@@ -48,6 +49,7 @@ button {
   background-color: black;
   border: none;
   padding: 0 15px;
+  cursor: pointer;
 }
 
 .recipe-card-list {
@@ -62,6 +64,7 @@ button {
   font-size: 1.5rem;
   background-color: rgb(240, 255, 250);
   padding: 10px;
+  cursor: pointer;
 }
 
 .recipe-image-wrapper {
@@ -106,13 +109,15 @@ button {
 .recipe-card-title {
   display: flex;
   justify-content: space-between;
+  height: 3rem;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
-.recipe-card-title img {
-  width: 30px;
-  height: 30px;
-  align-self: flex-end;
-  cursor: pointer;
+.recipe-card-title span {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .modal-overlay {
@@ -135,7 +140,6 @@ button {
   height: 90%;
   font-size: 1.5rem;
   overflow: auto;
-  
 }
 
 .modal-header {
@@ -168,6 +172,12 @@ button {
 
 .indented-list span::after {
   content: " ";
+}
+
+.loading {
+  text-align: center;
+  margin-top: 10%;
+  font-size: 2rem;
 }
 
 @media screen and (max-width: 500px) {
