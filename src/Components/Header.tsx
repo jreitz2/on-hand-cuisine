@@ -28,7 +28,7 @@ const Header = ({ setRecipes, setLoading }: HeaderProps) => {
     e.preventDefault();
     setLoading(true);
     const noSpaceSearchTerm = searchTerm.replace(" ", "");
-    const key = "e362ee8a688847febf87cdb4e1a22a92";
+    const key = import.meta.env.VITE_API_KEY;
     let url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${key}&query=${noSpaceSearchTerm}&number=6&addRecipeInformation=true&addRecipeInstructions=true`;
     if (isVegetarian && !isGlutenFree) {
       url += "&diet=vegetarian";
