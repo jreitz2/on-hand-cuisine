@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Freehand&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap");
 
 * {
   margin: 0;
@@ -9,7 +9,7 @@
 
 body {
   background-color: rgb(212, 243, 227);
-  font-family: "Freehand", cursive;
+  font-family: "Patrick Hand", cursive;
 }
 
 .header {

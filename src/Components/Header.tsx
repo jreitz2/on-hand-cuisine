@@ -68,6 +68,7 @@ const Header = ({ setRecipes, setLoading }: HeaderProps) => {
 
   return (
     <div className="header">
+      <h1>On-hand Cuisine</h1>
       <p>Find recipes for the ingredients you already have on-hand!</p>
       <form className="search" onSubmit={handleSearch}>
         <input
