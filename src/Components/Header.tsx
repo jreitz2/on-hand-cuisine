@@ -29,7 +29,7 @@ const Header = ({ setRecipes, setLoading }: HeaderProps) => {
     setLoading(true);
     const noSpaceSearchTerm = searchTerm.replace(" ", "");
     const key = "e362ee8a688847febf87cdb4e1a22a92";
-    let url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${key}&query=${noSpaceSearchTerm}&number=6&addRecipeInformation=true`;
+    let url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${key}&query=${noSpaceSearchTerm}&number=6&addRecipeInformation=true&addRecipeInstructions=true`;
     if (isVegetarian && !isGlutenFree) {
       url += "&diet=vegetarian";
     }
@@ -51,10 +51,11 @@ const Header = ({ setRecipes, setLoading }: HeaderProps) => {
           title: recipe.title,
           likes: recipe.aggregateLikes,
           imageUrl: recipe.image,
-          instructions: recipe.analyzedInstructions.flatMap(
-            (instruction: any) =>
-              instruction.steps.map((step: any) => step.step)
-          ),
+          instructions: recipe.analyzedInstructions
+            ? recipe.analyzedInstructions.flatMap((instruction: any) =>
+                instruction.steps.map((step: any) => step.step)
+              )
+            : [],
           readyTime: recipe.readyInMinutes,
         }));
         setRecipes(formattedData);
