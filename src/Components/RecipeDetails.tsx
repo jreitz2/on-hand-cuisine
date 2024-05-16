@@ -20,13 +20,14 @@ const RecipeDetails = ({
   useEffect(() => {
     if (isModalOpen) {
       const fetchDetails = async () => {
+        const key = import.meta.env.VITE_API_KEY;
         try {
           const response = await fetch(
-            `https://api.spoonacular.com/recipes/${recipe.id}/nutritionLabel?apiKey=e362ee8a688847febf87cdb4e1a22a92`
+            `https://api.spoonacular.com/recipes/${recipe.id}/nutritionLabel?apiKey=${key}`
           );
           const data = await response.text();
           const response2 = await fetch(
-            `https://api.spoonacular.com/recipes/${recipe.id}/ingredientWidget.json?apiKey=e362ee8a688847febf87cdb4e1a22a92`
+            `https://api.spoonacular.com/recipes/${recipe.id}/ingredientWidget.json?apiKey=${key}`
           );
           const data2 = await response2.json();
 
