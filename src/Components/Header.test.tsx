@@ -1,10 +1,12 @@
 import { render, fireEvent, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import Header from "./Header";
+import { Recipe } from "../types";
 
 describe("Header", () => {
   let setRecipes: jest.Mock;
   let setLoading: jest.Mock;
+  let favorites: Recipe[] = [];
 
   beforeEach(() => {
     setRecipes = jest.fn();
@@ -13,7 +15,11 @@ describe("Header", () => {
 
   test("updates search term on input change", () => {
     const { getByPlaceholderText } = render(
-      <Header setRecipes={setRecipes} setLoading={setLoading} />
+      <Header
+        setRecipes={setRecipes}
+        setLoading={setLoading}
+        favorites={favorites}
+      />
     );
     const input = getByPlaceholderText(
       "bacon, sugar, flour"
@@ -26,7 +32,11 @@ describe("Header", () => {
 
   test("toggles vegetarian option on click", () => {
     const { getByLabelText } = render(
-      <Header setRecipes={setRecipes} setLoading={setLoading} />
+      <Header
+        setRecipes={setRecipes}
+        setLoading={setLoading}
+        favorites={favorites}
+      />
     );
     const checkbox = getByLabelText("Vegetarian") as HTMLInputElement;
 
@@ -37,7 +47,11 @@ describe("Header", () => {
 
   test("toggles gluten-free option on click", () => {
     const { getByLabelText } = render(
-      <Header setRecipes={setRecipes} setLoading={setLoading} />
+      <Header
+        setRecipes={setRecipes}
+        setLoading={setLoading}
+        favorites={favorites}
+      />
     );
     const checkbox = getByLabelText("Gluten-free") as HTMLInputElement;
 
@@ -48,7 +62,11 @@ describe("Header", () => {
 
   test("calls setLoading on form submit", async () => {
     const { getByPlaceholderText, getByText } = render(
-      <Header setRecipes={setRecipes} setLoading={setLoading} />
+      <Header
+        setRecipes={setRecipes}
+        setLoading={setLoading}
+        favorites={favorites}
+      />
     );
     const input = getByPlaceholderText("bacon, sugar, flour");
     const button = getByText("Search");
