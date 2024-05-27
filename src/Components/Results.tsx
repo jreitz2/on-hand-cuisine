@@ -2,14 +2,23 @@ import RecipeDetails from "./RecipeDetails";
 import { Recipe, SetLoadingType } from "../types";
 import { useEffect, useState } from "react";
 import clockIcon from "../assets/clock.png";
+import bookmarkOutline from "../assets/bookmark-outline.png";
 
 type ResultsProps = {
   recipes: Recipe[];
   loading: boolean;
   setLoading: SetLoadingType;
+  addToFavorites: (recipe: Recipe) => void;
+  favorites: Recipe[];
 };
 
-const Results = ({ recipes, loading, setLoading }: ResultsProps) => {
+const Results = ({
+  recipes,
+  loading,
+  setLoading,
+  favorites,
+  addToFavorites,
+}: ResultsProps) => {
   const [listItems, setListItems] = useState<JSX.Element[]>([]);
   const [modalStates, setModalStates] = useState<boolean[]>([]);
 
@@ -43,6 +52,11 @@ const Results = ({ recipes, loading, setLoading }: ResultsProps) => {
                 </div>
                 <div className="recipe-card-title">
                   <span>{recipe.title}</span>
+                  <img
+                    src={bookmarkOutline}
+                    alt="save recipe"
+                    onClick={(e) => handleBookmarkClick(e, recipe)}
+                  />
                 </div>
               </div>
               <RecipeDetails
@@ -59,12 +73,17 @@ const Results = ({ recipes, loading, setLoading }: ResultsProps) => {
           console.error("Error preloading images:", error);
         });
     }
-  }, [recipes, modalStates]);
+  }, [recipes, modalStates, favorites]);
 
   const toggleModal = (index: number) => {
     const updatedModalStates = [...modalStates];
     updatedModalStates[index] = !updatedModalStates[index];
     setModalStates(updatedModalStates);
+  };
+
+  const handleBookmarkClick = (event: React.MouseEvent, recipe: Recipe) => {
+    event.stopPropagation();
+    addToFavorites(recipe);
   };
 
   return (

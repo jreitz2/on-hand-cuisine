@@ -52,6 +52,10 @@ button {
   cursor: pointer;
 }
 
+.favBtn {
+  max-width: 200px;
+}
+
 .recipe-card-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -118,6 +122,11 @@ button {
   display: block;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.recipe-card-title img {
+  width: 2rem;
+  height: 2rem;
 }
 
 .modal-overlay {

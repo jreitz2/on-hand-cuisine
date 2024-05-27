@@ -1,12 +1,13 @@
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
-import { SetRecipesType, SetLoadingType } from "../types";
+import { Recipe, SetRecipesType, SetLoadingType } from "../types";
 
 type HeaderProps = {
   setRecipes: SetRecipesType;
   setLoading: SetLoadingType;
+  favorites: Recipe[];
 };
 
-const Header = ({ setRecipes, setLoading }: HeaderProps) => {
+const Header = ({ setRecipes, setLoading, favorites }: HeaderProps) => {
   const [searchTerm, setSearchTerm] = useState("bacon, sugar, flour");
   const [isVegetarian, setIsVegetarian] = useState(false);
   const [isGlutenFree, setIsGlutenFree] = useState(false);
@@ -37,6 +38,10 @@ const Header = ({ setRecipes, setLoading }: HeaderProps) => {
 
   const handleKetogenicChange = () => {
     setIsKetogenic(!isKetogenic);
+  };
+
+  const handleViewFavorites = () => {
+    setRecipes(favorites);
   };
 
   const handleSearch = async (e?: FormEvent<HTMLFormElement>) => {
@@ -148,6 +153,10 @@ const Header = ({ setRecipes, setLoading }: HeaderProps) => {
         <label htmlFor="ketogenic"> Ketogenic </label>
       </form>
       {noResultsFound && <p>No results found. Try less ingredients/filters.</p>}
+      <br />
+      <button className="favBtn" onClick={handleViewFavorites}>
+        View Favorites
+      </button>
     </div>
   );
 };
